@@ -155,29 +155,4 @@ printf "  \e[0m\e[1;93m  Languages     \e[0m\e[1;96m:\e[0m\e[1;92m   $userlangua
 printf "  \e[0m\e[1;93m  Calling Code  \e[0m\e[1;96m:\e[0m\e[1;92m   $usercalling\e[0m\n"
 printf "\e[0m\n"
 printf "  \e[0m\e[1;93m  GOOGLE Maps   \e[0m\e[1;96m:\e[0m\e[1;94m  https://maps.google.com/?q=$userlat,$userlon\e[0m\n"
-sleep 5
-printf "\e[0m\n"
-printf "  \e[0m\e[1;91m[\e[0m\e[1;97m01\e[0m\e[1;91m]\e[0m\e[1;93m Return To Main Menu\e[0m\n"
-printf "  \e[0m\e[1;91m[\e[0m\e[1;97m02\e[0m\e[1;91m]\e[0m\e[1;93m Exit\e[0m\n"
-printf "\e[0m\n"
-read -p $'  \e[1;31m>>\e[0m\e[1;96m  \en' mainorexit2
-
-if [[ $mainorexit2 == 1 || $mainorexit2 == 01 ]]; then
-banner
-menu
-elif [[ $mainorexit2 == 2 || $mainorexit2 == 02 ]]; then
-printf "\e[0m\n"
-printf "\e[0m\n"
-exit 1
-
-else
-printf " \e[1;91m[\e[0m\e[1;97m!\e[0m\e[1;91m]\e[0m\e[1;93m Invalid option \e[1;91m[\e[0m\e[1;97m!\e[0m\e[1;91m]\e[0m\n"
-sleep 1
-banner
-menu
-fi
-
-}
-
-banner
-menu
+sleep 3
