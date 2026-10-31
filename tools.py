@@ -7,105 +7,121 @@ from colorama import Fore, Style, init
 # Inisialisasi colorama
 init(autoreset=True)
 
-# Fungsi untuk membersihkan layar
 def clear_screen():
     os.system('clear' if os.name == 'posix' else 'cls')
 
-# Fungsi Animasi Loading Bar
-def loading_animation(text, duration=2):
-    print(f"{Fore.CYAN}[*] {text}", end="", flush=True)
-    for _ in range(20):
-        time.sleep(duration / 20)
-        print(f"{Fore.GREEN}█", end="", flush=True)
-    print(f" {Fore.GREEN}100% COMPLETE!")
+# ==========================================
+# KUMPULAN ANIMASI BIAR KEREN
+# ==========================================
+
+def animasi_startup():
+    clear_screen()
+    # Animasi Loading Bar Start
+    print(f"{Fore.CYAN}[*] Sedang Menyiapkan Environment...")
+    for i in range(21):
+        time.sleep(0.05)
+        percent = i * 5
+        bar = '█' * i + '░' * (20 - i)
+        print(f"\r{Fore.GREEN}[{bar}] {percent}%", end="")
+    print(f"\n{Fore.GREEN}[✓] System Ready!\n")
     time.sleep(0.5)
 
-# Fungsi Banner ASCII
-def show_banner():
-    clear_screen()
-    # Ganti teks di dalam print dengan ASCII art buatanmu atau generator
-    banner = f"""
-{Fore.RED}  ██████╗ ██╗   ██╗    ████████╗ ██████╗  ██████╗ ██╗     ███████╗
-{Fore.RED}  ██╔══██╗╚██╗ ██╔╝    ╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔════╝
-{Fore.YELLOW}  ██████╔╝ ╚████╔╝        ██║   ██║   ██║██║   ██║██║     ███████╗
-{Fore.YELLOW}  ██╔═══╝   ╚██╔╝         ██║   ██║   ██║██║   ██║██║     ╚════██║
-{Fore.GREEN}  ██║        ██║          ██║   ╚██████╔╝╚██████╔╝███████╗███████║
-{Fore.GREEN}  ╚═╝        ╚═╝          ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
-    """
-    print(banner)
-    print(f"{Fore.CYAN}  ===============================================================")
-    print(f"{Fore.WHITE}  [+] Tool Created By : {Fore.YELLOW}NamaKamu")
-    print(f"{Fore.WHITE}  [+] Version         : {Fore.GREEN}v1.0.0")
-    print(f"{Fore.WHITE}  [+] Github          : {Fore.BLUE}github.com/usernamekamu")
-    print(f"{Fore.CYAN}  ===============================================================")
+def animasi_typing(text, delay=0.03):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(delay)
     print()
 
-# Fitur 1: Dummy (Bisa diganti isinya nanti)
-def fitur_satu():
-    clear_screen()
-    print(f"{Fore.CYAN}[*] Menjalankan Fitur Satu...")
-    loading_animation("Memuat modul rahasia", 1.5)
-    print(f"\n{Fore.GREEN}[✓] Fitur Satu berhasil dijalankan!")
-    print(f"{Fore.YELLOW}[!] (Kamu bisa menambahkan kode Python-mu di dalam fungsi ini)")
-    input(f"\n{Fore.WHITE}Tekan Enter untuk kembali ke menu...")
-
-# Fitur 2: Matrix Effect / Animasi Hacker
-def fitur_matriks():
-    clear_screen()
-    print(f"{Fore.GREEN}Menjalankan Animasi Matrix (Tekan CTRL+C untuk berhenti)")
-    time.sleep(1)
-    try:
-        chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        while True:
-            line = "".join(random.choice(chars) for _ in range(50))
-            print(f"{Fore.GREEN}{line}")
+def animasi_pilih_menu(nama_tool):
+    # Animasi muter pas milih menu
+    spinner = ['|', '/', '-', '\\']
+    print(f"\n{Fore.YELLOW}[*] Memuat modul {nama_tool} ", end="")
+    for _ in range(15):
+        for char in spinner:
+            sys.stdout.write(f"\b{char}")
+            sys.stdout.flush()
             time.sleep(0.05)
-    except KeyboardInterrupt:
-        print(f"\n{Fore.RED}[!] Animasi dihentikan.")
-        time.sleep(1)
+    print(f"\n{Fore.GREEN}[✓] Modul Siap Dieksekusi!\n")
+    time.sleep(0.3)
 
-# Fitur 3: Info Sistem
-def fitur_info():
+# ==========================================
+# TAMPILAN BANNER & MENU
+# ==========================================
+
+def show_banner():
     clear_screen()
-    print(f"{Fore.CYAN}==== [ SYSTEM INFO ] ====")
-    os.system("uname -a")
-    os.system("df -h | grep -v tmpfs")
-    print(f"{Fore.CYAN}=========================")
-    input(f"\n{Fore.WHITE}Tekan Enter untuk kembali ke menu...")
+    banner = f"""
+{Fore.RED}  ████████╗ ██████╗  ██████╗ ██╗     ███████╗
+{Fore.RED}  ╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔════╝
+{Fore.YELLOW}     ██║   ██║   ██║██║   ██║██║     ███████╗
+{Fore.YELLOW}     ██║   ██║   ██║██║   ██║██║     ╚════██║
+{Fore.GREEN}     ██║   ╚██████╔╝╚██████╔╝███████╗███████║
+{Fore.GREEN}     ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
+    """
+    print(banner)
+    print(f"{Fore.CYAN}  ==================================================")
+    print(f"{Fore.WHITE}  [+] Creator : {Fore.YELLOW}Jagoan Termux")
+    print(f"{Fore.WHITE}  [+] Version : {Fore.GREEN}v2.0.0 (Modular)")
+    print(f"{Fore.CYAN}  ==================================================\n")
 
-# Menu Utama
 def main_menu():
     while True:
         show_banner()
-        print(f"{Fore.RED}[01] {Fore.WHITE}Fitur Dummy 1")
-        print(f"{Fore.RED}[02] {Fore.WHITE}Matrix Effect (Animasi)")
-        print(f"{Fore.RED}[03] {Fore.WHITE}System Information")
+        
+        # Menu 1 - 10 dengan nama random
+        menu_items = [
+            "IP Tracker (tools1.py)",
+            "Web Scanner (tools2.py)",
+            "Hash Cracker (tools3.py)",
+            "Network Ping (tools4.py)",
+            "DNS Lookup (tools5.py)",
+            "Port Scanner (tools6.py)",
+            "Metadata Cleaner (tools7.py)",
+            "Subdomain Finder (tools8.py)",
+            "Password Generator (tools9.py)",
+            "Encryptor Tools (tools10.py)"
+        ]
+
+        for i, item in enumerate(menu_items, 1):
+            print(f"{Fore.RED}[{i:02d}] {Fore.WHITE}{item}")
+        
         print(f"{Fore.RED}[00] {Fore.WHITE}Exit")
-        print(f"{Fore.CYAN}---------------------------------------------------------------")
+        print(f"{Fore.CYAN}--------------------------------------------------")
         
         try:
-            pilihan = input(f"{Fore.GREEN}SELECT [01-03 / 00] >> {Fore.WHITE}")
+            pilihan = input(f"{Fore.GREEN}SELECT [01-10 / 00] >> {Fore.WHITE}")
             
-            if pilihan == '1' or pilihan == '01':
-                fitur_satu()
-            elif pilihan == '2' or pilihan == '02':
-                fitur_matriks()
-            elif pilihan == '3' or pilihan == '03':
-                fitur_info()
-            elif pilihan == '0' or pilihan == '00':
+            if pilihan == '0' or pilihan == '00':
                 print(f"\n{Fore.RED}[!] Keluar dari program...")
                 time.sleep(1)
                 sys.exit()
+            elif pilihan in [str(i).zfill(2) for i in range(1, 11)] or pilihan in [str(i) for i in range(1, 11)]:
+                # Konversi input ke angka
+                angka = int(pilihan)
+                nama_file = f"tools{angka}.py"
+                
+                # Animasi pas milih
+                animasi_pilih_menu(nama_file)
+                
+                # Eksekusi file terpisah
+                os.system(f"python {nama_file}")
+                
+                # Pause sebelum balik ke menu utama
+                input(f"\n{Fore.CYAN}Tekan Enter untuk kembali ke Menu Utama...")
             else:
                 print(f"{Fore.RED}[!] Pilihan tidak valid! Silakan coba lagi.")
                 time.sleep(1)
         except KeyboardInterrupt:
             print(f"\n{Fore.RED}[!] Program dihentikan paksa.")
             sys.exit()
+        except Exception as e:
+            print(f"{Fore.RED}[!] Error: {e}")
+            time.sleep(1)
 
-# Eksekusi Program
 if __name__ == "__main__":
     try:
+        animasi_startup() # Animasi pas python tools.py dijalanin
         main_menu()
-    except Exception as e:
-        print(f"{Fore.RED}Terjadi kesalahan: {e}")
+    except KeyboardInterrupt:
+        print(f"\n{Fore.RED}[!] Dibatalkan oleh user.")
