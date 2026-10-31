@@ -1,42 +1,30 @@
 import os
-import sys
 import time
 from colorama import Fore, Style, init
 
+# Inisialisasi warna
 init(autoreset=True)
 
 def clear_screen():
     os.system('clear' if os.name == 'posix' else 'cls')
 
-def loading_modul(nama_modul):
-    print(f"{Fore.CYAN}[*] Menginisialisasi {nama_modul}...")
-    for i in range(15):
-        time.sleep(0.05)
-        print(f"{Fore.GREEN}■", end="", flush=True)
-    print(f" {Fore.GREEN}Done!\n")
-
 if __name__ == "__main__":
     clear_screen()
     
-    # GANTI JUDUL INI SESUAI KEINGINANMU
     print(f"""{Fore.MAGENTA}
     =====================================
          [ TOOLS 1 - IP TRACKER ]
     =====================================
     """)
     
-    loading_modul("Core System")
+    print(f"{Fore.CYAN}[*] Menghubungkan ke modul Shell...")
+    time.sleep(1)
     
     # ==========================================
-    # TARUH SCRIPT KAMU DI SINI BANH
+    # INI DIA CARA MANGGIL FILE .SH NYA BANG
     # ==========================================
+    os.system("bash ipscript.sh")
     
-    print(f"{Fore.YELLOW}[!] Silakan edit file 'tools1.py' untuk menambahkan logika fitur ini.")
-    print(f"{Fore.WHITE}Contoh: Kamu bisa taruh script IP API, scraping, dll di sini.")
-    
-    # Contoh dummy output
-    print(f"\n{Fore.GREEN}[✓] Fitur dummy berjalan sukses.")
-    
-    # ==========================================
-    # BATAS AKHIR SCRIPT KAMU
-    # ==========================================
+    # Setelah script .sh selesai/exit, program akan lanjut ke baris ini
+    print(f"\n{Fore.GREEN}[✓] Kembali dari IP Tracker.")
+    input(f"{Fore.YELLOW}Tekan Enter untuk kembali ke Menu Utama...")
